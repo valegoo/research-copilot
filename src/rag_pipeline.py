@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class RAGPipeline:
-    def __init__(self, persist_dir: str = "chroma_db", lecturas_dir: str = "Lecturas"):
+    def __init__(self, persist_dir: str = "chroma_db", lecturas_dir: str = "papers"):
         self.lecturas_dir = lecturas_dir
         self.persist_dir = persist_dir
         
@@ -102,7 +102,7 @@ class RAGPipeline:
             
         retrieved_chunks = self.vector_store.query(
             query_embedding=query_emb,
-            n_results=10,
+            n_results=15,
             where=where_clause
         )
         
