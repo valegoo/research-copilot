@@ -139,7 +139,7 @@ class RAGPipeline:
 
 if __name__ == "__main__":
     # Test
-    pipeline = RAGPipeline(lecturas_dir="../Lecturas", persist_dir="../chroma_db")
+    pipeline = RAGPipeline(lecturas_dir="papers", persist_dir="chroma_db")
     # pipeline.initialize_index()
     # ans, cites = pipeline.query("What is neoliberalism?")
     # print(ans)
