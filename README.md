@@ -20,17 +20,40 @@ _Note: More screenshots can be found in the /demo/screenshots folder._
 ## 🏗️ Section 3: Architecture
 The system follows a modular RAG architecture implemented in Python and Streamlit.
 
-```mermaid
-graph TD
-    A[Papers /PDFs/] --> B[src/ingestion]
-    B --> C[src/chunking]
-    C --> D[src/embedding]
-    D --> E[(ChromaDB)]
-    F[User Query] --> G[src/retrieval]
-    E --> G
-    G --> H[src/generation]
-    H --> I[Streamlit UI]
-    I --> F
+```text
+┌─────────────────────────────────────────────────────────────────────┐
+│                        RESEARCH COPILOT                              │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────────────┐  │
+│  │   21 PDFs    │───▶│   INGESTION  │───▶│   VECTOR DATABASE    │  │
+│  │  (Academic   │    │   PIPELINE   │    │    (ChromaDB)        │  │
+│  │   Papers)    │    │              │    │                      │  │
+│  └──────────────┘    │ - Extract    │    │ - Embeddings         │  │
+│                      │ - Clean      │    │ - Metadata           │  │
+│                      │ - Chunk      │    │ - Similarity Search  │  │
+│                      │ - Embed      │    │                      │  │
+│                      └──────────────┘    └──────────┬───────────┘  │
+│                                                      │              │
+│  ┌──────────────────────────────────────────────────┼──────────┐   │
+│  │                    RAG PIPELINE                   │          │   │
+│  │                                                   ▼          │   │
+│  │  ┌─────────┐    ┌─────────────┐    ┌─────────────────────┐  │   │
+│  │  │  USER   │───▶│   RETRIEVER │───▶│   GPT-4 GENERATOR   │  │   │
+│  │  │  QUERY  │    │   (top-k)   │    │   + Prompt Engine   │  │   │
+│  │  └─────────┘    └─────────────┘    └──────────┬──────────┘  │   │
+│  │                                                │             │   │
+│  └────────────────────────────────────────────────┼─────────────┘   │
+│                                                   │                 │
+│  ┌────────────────────────────────────────────────┼─────────────┐  │
+│  │                 WEB INTERFACE                   ▼             │  │
+│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐     │  │
+│  │  │   CHAT   │  │  PAPER   │  │  SEARCH  │  │  VISUAL  │     │  │
+│  │  │ INTERFACE│  │ BROWSER  │  │ FILTERS  │  │  CHARTS  │     │  │
+│  │  └──────────┘  └──────────┘  └──────────┘  └──────────┘     │  │
+│  └──────────────────────────────────────────────────────────────┘  │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Component Explanation:
@@ -86,16 +109,19 @@ streamlit run app/main.py
 ## 🔬 Section 6: Technical Details
 
 ### Chunking Configuration Comparison
-| Config | Size | Overlap | Performance |
-| :--- | :--- | :--- | :--- |
-| **Option A (Default)** | 512 tokens | 50 tokens | Balanced retrieval of facts and context. |
-| **Option B (Small)** | 256 tokens | 25 tokens | High precision for specific keyword searches. |
+| Configuration | Chunk Size | Overlap | Total Chunks | Use Case |
+| :--- | :--- | :--- | :--- | :--- |
+| **Small** | 256 tokens | 25 tokens | ~2000 | Factual Q&A |
+| **Medium** | 512 tokens | 50 tokens | ~1000 | Balanced |
+| **Large** | 1024 tokens | 100 tokens | ~500 | Complex reasoning |
 
-### Prompt Strategies
-- **V1 (Delimiters)**: Uses "###" to isolate context, preventing prompt injection.
-- **V2 (JSON Output)**: Constant structure for UI rendering.
-- **V3 (Few-Shot)**: Provides 2 examples of perfect academic answers.
-- **V4 (CoT)**: Forces the model to "think step-by-step" before answering.
+### Prompt Strategy Comparison Table
+| Strategy | Best For | Latency | Token Usage | Citation Quality |
+| :--- | :--- | :--- | :--- | :--- |
+| **V1: Delimiters** | Simple factual Q&A | Low | Low | Medium |
+| **V2: JSON** | API integration | Medium | Medium | High |
+| **V3: Few-shot** | Consistent formatting | Medium | High | High |
+| **V4: Chain-of-thought** | Complex reasoning | High | High | High |
 
 **Embedding Model**: `text-embedding-3-small` (1536-dim).
 **Token Usage**: Average ~1200 tokens per complex academic query.
@@ -121,7 +147,7 @@ streamlit run app/main.py
 ---
 
 ## 👤 Section 9: Author Information
-- **Name**: [Your Name Here]
+- **Name**: Valeria Gonzales Torres
 - **Course**: Prompt Engineering: Advanced AI Applications
 - **Date**: March 2026
-- **Institution**: [Your University/Institute]
+- **Institution**: PUCP
