@@ -5,12 +5,23 @@ import sys
 # Add root to path
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
+from src.rag_pipeline import RAGPipeline
 from utils.styling import apply_custom_styles
 from utils.session import initialize_session_state
 
 st.set_page_config(page_title="Settings", page_icon="⚙️", layout="wide")
 apply_custom_styles()
 initialize_session_state()
+
+# Initialize RAG Pipeline in session if not already present
+if "rag_pipeline" not in st.session_state:
+    try:
+        st.session_state.rag_pipeline = RAGPipeline(
+            persist_dir="chroma_db", 
+            lecturas_dir="papers"
+        )
+    except Exception as e:
+        st.error(f"Failed to initialize RAG Pipeline: {e}")
 
 # Title
 st.title("⚙️ System Configuration")
