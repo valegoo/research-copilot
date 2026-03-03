@@ -63,7 +63,7 @@ with u_col2:
     st.caption("Based on last 10 queries")
 
 with u_col3:
-    query_count = len(st.session_state.chat_history) // 2
+    query_count = len(st.session_state.messages) // 2
     st.metric(label="Total Queries", value=query_count, delta=query_count, delta_color="normal")
     st.caption("Current session count")
 

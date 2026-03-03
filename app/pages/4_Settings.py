@@ -2,8 +2,8 @@ import streamlit as st
 import os
 import sys
 
-# Add backend to path
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "backend"))
+# Add root to path
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from utils.styling import apply_custom_styles
 from utils.session import initialize_session_state
@@ -42,7 +42,7 @@ st.subheader("🏗️ Vector Store Indexing")
 c1, c2 = st.columns(2)
 
 with c1:
-    is_indexed = os.path.exists("backend/chroma_db")
+    is_indexed = os.path.exists("chroma_db")
     st.write(f"Status: **{'Indexed' if is_indexed else 'Not Indexed'}**")
     st.write(f"Papers in Collection: **{len(st.session_state.papers)}**")
     
@@ -59,12 +59,12 @@ with c1:
             st.error("RAG Pipeline not initialized. Please check backend logs.")
 
 with c2:
-    st.write("Storage Path: `./backend/chroma_db`")
+    st.write("Storage Path: `./chroma_db`")
     st.write("Distance Metric: **Cosine**")
     if st.button("Clear Vector Database 🧨"):
         import shutil
-        if os.path.exists("backend/chroma_db"):
-            shutil.rmtree("backend/chroma_db")
+        if os.path.exists("chroma_db"):
+            shutil.rmtree("chroma_db")
             st.success("Vector database cleared successfully!")
             st.rerun()
         else:

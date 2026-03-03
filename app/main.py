@@ -2,8 +2,8 @@ import streamlit as st
 import os
 import sys
 
-# Add backend to path to import our modules
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "backend"))
+# Add root to path to import our modules
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 from src.rag_pipeline import RAGPipeline
 from components.citation import display_citation
@@ -47,8 +47,11 @@ if "rag_pipeline" not in st.session_state:
             persist_dir="chroma_db", 
             lecturas_dir="papers"
         )
+        # Auto-initialize if empty
+        st.session_state.rag_pipeline.initialize_index()
     except Exception as e:
         st.error(f"Failed to initialize RAG Pipeline: {e}")
+        st.info("Tip: If you're using Streamlit Cloud, make sure your OpenAI API Key is in the 'Secrets' settings.")
 
 # Sidebar
 with st.sidebar:

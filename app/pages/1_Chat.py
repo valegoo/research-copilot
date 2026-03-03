@@ -3,8 +3,8 @@ import time
 import os
 import sys
 
-# Add backend to path
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "backend"))
+# Add root to path
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from src.rag_pipeline import RAGPipeline
 from components.chat_message import display_chat_message
@@ -70,7 +70,7 @@ with st.sidebar:
     
     st.markdown("---")
     if st.button("Clear Conversation 🧹", use_container_width=True):
-        st.session_state.chat_history = []
+        st.session_state.messages = []
         st.rerun()
 
 # Main Chat View
@@ -110,7 +110,7 @@ if prompt := st.chat_input("Ask about neoliberalism, academic capitalism, etc.")
                     display_citations(citations)
                 
                 # Update History
-                st.session_state.chat_history.append({
+                st.session_state.messages.append({
                     "role": "Assistant", 
                     "content": response,
                     "citations": citations
