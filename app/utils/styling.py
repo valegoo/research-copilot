@@ -109,8 +109,15 @@ def apply_custom_styles():
     .badge-topic { background: #ECFDF5 !important; color: #064E3B !important; }
 
     /* Hide the annoying 'keyboard_double' text if it appears as plain text */
-    span:empty:before {
-        content: none !important;
+    [data-testid="stSidebarNav"] li span {
+        display: none !important;
+    }
+    [data-testid="stSidebarNav"] li a div {
+        display: block !important;
+    }
+    /* Restoration of actual nav text */
+    [data-testid="stSidebarNav"] li div span {
+        display: inline-block !important;
     }
 
     </style>

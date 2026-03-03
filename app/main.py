@@ -56,7 +56,7 @@ if "rag_pipeline" not in st.session_state:
 # Sidebar
 with st.sidebar:
     # Use a local or remote logo if available
-    st.image("https://img.icons8.com/isometric/512/microscope.png", width=100)
+    st.image("https://img.icons8.com/isometric/512/open-book.png", width=100)
     st.title("Research Copilot")
     st.markdown("_Your AI academic assistant_")
     st.markdown("---")
