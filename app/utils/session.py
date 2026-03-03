@@ -10,7 +10,7 @@ def initialize_session_state():
     
     # Paper Database
     if "papers" not in st.session_state:
-        lecturas_path = "Lecturas"
+        lecturas_path = "papers"
         try:
             pdf_files = sorted([f for f in os.listdir(lecturas_path) if f.lower().endswith('.pdf')])
             st.session_state.papers = []
