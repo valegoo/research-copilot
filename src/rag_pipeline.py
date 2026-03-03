@@ -102,7 +102,7 @@ class RAGPipeline:
             
         retrieved_chunks = self.vector_store.query(
             query_embedding=query_emb,
-            n_results=5,
+            n_results=10,
             where=where_clause
         )
         
