@@ -23,6 +23,8 @@ if "rag_pipeline" not in st.session_state:
             persist_dir="chroma_db", 
             lecturas_dir="papers"
         )
+        # Ensure database is initialized
+        st.session_state.rag_pipeline.initialize_index()
     except Exception as e:
         st.error(f"Failed to initialize RAG Pipeline: {e}")
 
