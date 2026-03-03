@@ -3,122 +3,119 @@ import streamlit as st
 def apply_custom_styles():
     st.markdown("""
     <style>
-    /* Professional Academic Theme - Premium Edition */
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap');
+    /* Premium Pastel Academic Theme */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
     
     :root {
-        --primary: hsl(245, 82%, 67%);
-        --primary-hover: hsl(245, 82%, 75%);
-        --bg-glass: rgba(15, 23, 42, 0.7);
-        --border-glass: rgba(255, 255, 255, 0.1);
-        --text-main: #E2E8F0;
-        --text-sub: #94A3B8;
+        --primary: #A5B4FC;
+        --secondary: #FDE68A;
+        --accent: #FDA4AF;
+        --bg-soft: #F8FAFC;
+        --text-main: #1E293B;
+        --text-sub: #64748B;
+        --glass-bg: rgba(255, 255, 255, 0.8);
+        --glass-border: rgba(255, 255, 255, 0.4);
     }
 
     html, body, [class*="css"] {
         font-family: 'Inter', sans-serif;
         color: var(--text-main);
+        background-color: var(--bg-soft);
     }
     
     h1, h2, h3 {
         font-family: 'Outfit', sans-serif;
         font-weight: 700;
-        letter-spacing: -0.02em;
+        color: #0F172A;
     }
 
-    /* Premium Glassmorphism Container */
+    /* Soft Pastel Container */
     .stMainBlockContainer {
         padding: 3rem 6rem;
-        background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.05), transparent), 
-                    var(--bg-glass);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 32px;
-        border: 1px solid var(--border-glass);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(135deg, #F0F4FF 0%, #FAF5FF 100%);
+        backdrop-filter: blur(10px);
+        border-radius: 40px;
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 15px 35px -10px rgba(165, 180, 252, 0.2);
         margin: 2rem;
     }
 
     /* Sidebar Styling */
     [data-testid="stSidebar"] {
-        background: rgba(15, 23, 42, 0.95);
-        border-right: 1px solid var(--border-glass);
+        background-color: #FFFFFF;
+        border-right: 1px solid #E2E8F0;
     }
 
     /* Chat Messages - User */
     .user-msg {
-        background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
-        color: white;
+        background: linear-gradient(135deg, #A5B4FC 0%, #C7D2FE 100%);
+        color: #1E293B;
         padding: 1.25rem 1.75rem;
         border-radius: 24px 24px 4px 24px;
-        margin-bottom: 2rem;
-        box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
+        margin-bottom: 1.5rem;
+        box-shadow: 0 8px 20px -8px rgba(165, 180, 252, 0.4);
         width: fit-content;
         max-width: 85%;
         margin-left: auto;
-        font-size: 1.05rem;
-        line-height: 1.5;
+        font-weight: 500;
     }
 
     /* Chat Messages - Assistant */
     .assistant-msg {
-        background: rgba(30, 41, 59, 0.6);
-        backdrop-filter: blur(5px);
-        color: #F8FAFC;
+        background: #FFFFFF;
+        color: #334155;
         padding: 1.25rem 1.75rem;
         border-radius: 24px 24px 24px 4px;
-        margin-bottom: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+        margin-bottom: 1.5rem;
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.05);
         width: fit-content;
         max-width: 85%;
-        font-size: 1.05rem;
-        line-height: 1.6;
     }
 
     /* Paper Cards */
     .paper-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: #FFFFFF;
         padding: 2rem;
-        border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        backdrop-filter: blur(10px);
+        border-radius: 28px;
+        border: 1px solid #F1F5F9;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.05);
     }
     
     .paper-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(99, 102, 241, 0.4);
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+        transform: translateY(-6px);
+        background: #FDFCFD;
+        border-color: #E0E7FF;
+        box-shadow: 0 12px 24px -12px rgba(165, 180, 252, 0.3);
     }
 
     /* Badges */
     .badge {
         font-size: 0.7rem;
-        padding: 0.3rem 0.8rem;
+        padding: 0.35rem 0.85rem;
         border-radius: 100px;
-        font-weight: 700;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.03em;
         margin-right: 0.5rem;
     }
 
-    .badge-year { background: rgba(99, 102, 241, 0.15); color: #818CF8; border: 1px solid rgba(99, 102, 241, 0.2); }
-    .badge-topic { background: rgba(34, 197, 94, 0.15); color: #4ADE80; border: 1px solid rgba(34, 197, 94, 0.2); }
+    .badge-year { background: #E0E7FF; color: #4338CA; border: 1px solid #C7D2FE; }
+    .badge-topic { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
 
     /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.1); }
-    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.3); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #A5B4FC; }
 
     /* Animations */
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
     }
-    .stChatFloatingInputContainer { animation: fadeIn 0.5s ease; }
+    .stChatFloatingInputContainer { animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
 
     </style>
     """, unsafe_allow_html=True)
