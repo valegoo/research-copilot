@@ -3,119 +3,115 @@ import streamlit as st
 def apply_custom_styles():
     st.markdown("""
     <style>
-    /* Premium Pastel Academic Theme */
+    /* Premium Pastel Academic Theme - Optimized Edition */
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
     
-    :root {
-        --primary: #A5B4FC;
-        --secondary: #FDE68A;
-        --accent: #FDA4AF;
-        --bg-soft: #F8FAFC;
-        --text-main: #1E293B;
-        --text-sub: #64748B;
-        --glass-bg: rgba(255, 255, 255, 0.8);
-        --glass-border: rgba(255, 255, 255, 0.4);
+    /* Global Background */
+    .stApp {
+        background-color: #F8FAFC !important;
     }
 
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-        color: var(--text-main);
-        background-color: var(--bg-soft);
+    /* Fixed Sidebar & Main Container */
+    [data-testid="stSidebar"] {
+        background-color: #FFFFFF !important;
+        border-right: 1px solid #E2E8F0 !important;
     }
     
-    h1, h2, h3 {
-        font-family: 'Outfit', sans-serif;
-        font-weight: 700;
-        color: #0F172A;
+    /* Fix for 'keyboard_double' and icon artifacts */
+    [data-testid="stSidebarNav"] h1, 
+    [data-testid="stSidebarNav"] span,
+    [data-testid="stSidebar"] span,
+    [data-testid="stHeader"] span {
+        font-family: inherit !important; /* Don't force Inter on icons */
     }
 
-    /* Soft Pastel Container */
+    /* Target specific headings instead of all of them */
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .main-title {
+        font-family: 'Outfit', sans-serif !important;
+        color: #1E1B4B !important;
+        font-weight: 700 !important;
+    }
+
+    .stMarkdown p, .stMarkdown li, .stMarkdown span:not(.material-icons) {
+        color: #334155 !important;
+        font-family: 'Inter', sans-serif !important;
+    }
+
+    /* Main Content Styling */
     .stMainBlockContainer {
-        padding: 3rem 6rem;
-        background: linear-gradient(135deg, #F0F4FF 0%, #FAF5FF 100%);
-        backdrop-filter: blur(10px);
-        border-radius: 40px;
-        border: 1px solid var(--glass-border);
-        box-shadow: 0 15px 35px -10px rgba(165, 180, 252, 0.2);
-        margin: 2rem;
-    }
-
-    /* Sidebar Styling */
-    [data-testid="stSidebar"] {
-        background-color: #FFFFFF;
-        border-right: 1px solid #E2E8F0;
-    }
-
-    /* Chat Messages - User */
-    .user-msg {
-        background: linear-gradient(135deg, #A5B4FC 0%, #C7D2FE 100%);
-        color: #1E293B;
-        padding: 1.25rem 1.75rem;
-        border-radius: 24px 24px 4px 24px;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 8px 20px -8px rgba(165, 180, 252, 0.4);
-        width: fit-content;
-        max-width: 85%;
-        margin-left: auto;
-        font-weight: 500;
-    }
-
-    /* Chat Messages - Assistant */
-    .assistant-msg {
-        background: #FFFFFF;
-        color: #334155;
-        padding: 1.25rem 1.75rem;
-        border-radius: 24px 24px 24px 4px;
-        margin-bottom: 1.5rem;
-        border: 1px solid #E2E8F0;
-        box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.05);
-        width: fit-content;
-        max-width: 85%;
+        background-color: #FFFFFF !important;
+        border-radius: 24px !important;
+        padding: 2rem 4rem !important;
+        border: 1px solid #F1F5F9 !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+        margin-top: 1rem !important;
     }
 
     /* Paper Cards */
     .paper-card {
-        background: #FFFFFF;
-        padding: 2rem;
-        border-radius: 28px;
-        border: 1px solid #F1F5F9;
-        transition: all 0.4s ease;
-        box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.05);
+        background: #FFFFFF !important;
+        padding: 1.5rem !important;
+        border-radius: 20px !important;
+        border: 1px solid #F1F5F9 !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.03) !important;
+        margin-bottom: 0.5rem !important;
+        transition: transform 0.2s ease;
     }
     
     .paper-card:hover {
-        transform: translateY(-6px);
-        background: #FDFCFD;
-        border-color: #E0E7FF;
-        box-shadow: 0 12px 24px -12px rgba(165, 180, 252, 0.3);
+        transform: translateY(-2px);
+        border-color: #A5B4FC !important;
+    }
+
+    /* Expander Fix (Overlap mitigation) */
+    .stExpander {
+        border: 1px solid #F1F5F9 !important;
+        background-color: #FCFDFF !important;
+        border-radius: 12px !important;
+        margin-top: -0.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .stExpander summary {
+        color: #4338CA !important;
+        font-weight: 600 !important;
+    }
+
+    /* Chat Messages */
+    .user-msg {
+        background-color: #EEF2FF !important;
+        border: 1px solid #C7D2FE !important;
+        color: #1E1B4B !important;
+        padding: 1.25rem !important;
+        border-radius: 16px 16px 4px 16px !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .assistant-msg {
+        background-color: #F8FAFC !important;
+        border: 1px solid #E2E8F0 !important;
+        color: #0F172A !important;
+        padding: 1.25rem !important;
+        border-radius: 16px 16px 16px 4px !important;
+        margin-bottom: 1rem !important;
     }
 
     /* Badges */
     .badge {
-        font-size: 0.7rem;
-        padding: 0.35rem 0.85rem;
-        border-radius: 100px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-        margin-right: 0.5rem;
+        font-size: 0.7rem !important;
+        padding: 0.2rem 0.6rem !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        display: inline-block !important;
+        margin-right: 0.4rem !important;
     }
+    .badge-year { background: #EEF2FF !important; color: #4338CA !important; }
+    .badge-topic { background: #ECFDF5 !important; color: #064E3B !important; }
 
-    .badge-year { background: #E0E7FF; color: #4338CA; border: 1px solid #C7D2FE; }
-    .badge-topic { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: #A5B4FC; }
-
-    /* Animations */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+    /* Hide the annoying 'keyboard_double' text if it appears as plain text */
+    span:empty:before {
+        content: none !important;
     }
-    .stChatFloatingInputContainer { animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
 
     </style>
     """, unsafe_allow_html=True)
