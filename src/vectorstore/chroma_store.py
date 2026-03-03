@@ -28,7 +28,7 @@ class ChromaVectorStore:
         if not self.collection:
             raise ValueError("Collection not initialized.")
             
-        self.collection.add(
+        self.collection.upsert(
             ids=ids,
             documents=documents,
             embeddings=embeddings,
